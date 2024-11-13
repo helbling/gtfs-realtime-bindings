@@ -4969,6 +4969,7 @@ $root.transit_realtime = (function() {
          * @property {string|null} [startDate] TripDescriptor startDate
          * @property {transit_realtime.TripDescriptor.ScheduleRelationship|null} [scheduleRelationship] TripDescriptor scheduleRelationship
          * @property {transit_realtime.TripDescriptor.IModifiedTripSelector|null} [modifiedTrip] TripDescriptor modifiedTrip
+         * @property {string|null} [originalTripId] TripDescriptor originalTripId
          */
 
         /**
@@ -5043,6 +5044,14 @@ $root.transit_realtime = (function() {
         TripDescriptor.prototype.modifiedTrip = null;
 
         /**
+         * TripDescriptor originalTripId.
+         * @member {string} originalTripId
+         * @memberof transit_realtime.TripDescriptor
+         * @instance
+         */
+        TripDescriptor.prototype.originalTripId = "";
+
+        /**
          * Creates a new TripDescriptor instance using the specified properties.
          * @function create
          * @memberof transit_realtime.TripDescriptor
@@ -5080,6 +5089,8 @@ $root.transit_realtime = (function() {
                 writer.uint32(/* id 6, wireType 0 =*/48).uint32(message.directionId);
             if (message.modifiedTrip != null && Object.hasOwnProperty.call(message, "modifiedTrip"))
                 $root.transit_realtime.TripDescriptor.ModifiedTripSelector.encode(message.modifiedTrip, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+            if (message.originalTripId != null && Object.hasOwnProperty.call(message, "originalTripId"))
+                writer.uint32(/* id 8, wireType 2 =*/66).string(message.originalTripId);
             return writer;
         };
 
@@ -5140,6 +5151,10 @@ $root.transit_realtime = (function() {
                     }
                 case 7: {
                         message.modifiedTrip = $root.transit_realtime.TripDescriptor.ModifiedTripSelector.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 8: {
+                        message.originalTripId = reader.string();
                         break;
                     }
                 default:
@@ -5210,6 +5225,9 @@ $root.transit_realtime = (function() {
                 if (error)
                     return "modifiedTrip." + error;
             }
+            if (message.originalTripId != null && message.hasOwnProperty("originalTripId"))
+                if (!$util.isString(message.originalTripId))
+                    return "originalTripId: string expected";
             return null;
         };
 
@@ -5276,6 +5294,8 @@ $root.transit_realtime = (function() {
                     throw TypeError(".transit_realtime.TripDescriptor.modifiedTrip: object expected");
                 message.modifiedTrip = $root.transit_realtime.TripDescriptor.ModifiedTripSelector.fromObject(object.modifiedTrip);
             }
+            if (object.originalTripId != null)
+                message.originalTripId = String(object.originalTripId);
             return message;
         };
 
@@ -5300,6 +5320,7 @@ $root.transit_realtime = (function() {
                 object.routeId = "";
                 object.directionId = 0;
                 object.modifiedTrip = null;
+                object.originalTripId = "";
             }
             if (message.tripId != null && message.hasOwnProperty("tripId"))
                 object.tripId = message.tripId;
@@ -5315,6 +5336,8 @@ $root.transit_realtime = (function() {
                 object.directionId = message.directionId;
             if (message.modifiedTrip != null && message.hasOwnProperty("modifiedTrip"))
                 object.modifiedTrip = $root.transit_realtime.TripDescriptor.ModifiedTripSelector.toObject(message.modifiedTrip, options);
+            if (message.originalTripId != null && message.hasOwnProperty("originalTripId"))
+                object.originalTripId = message.originalTripId;
             return object;
         };
 

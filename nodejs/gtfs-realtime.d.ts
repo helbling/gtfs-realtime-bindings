@@ -1738,6 +1738,9 @@ export namespace transit_realtime {
 
         /** TripDescriptor modifiedTrip */
         modifiedTrip?: (transit_realtime.TripDescriptor.IModifiedTripSelector|null);
+
+        /** TripDescriptor originalTripId */
+        originalTripId?: (string|null);
     }
 
     /** Represents a TripDescriptor. */
@@ -1769,6 +1772,9 @@ export namespace transit_realtime {
 
         /** TripDescriptor modifiedTrip. */
         public modifiedTrip?: (transit_realtime.TripDescriptor.IModifiedTripSelector|null);
+
+        /** TripDescriptor originalTripId. */
+        public originalTripId: string;
 
         /**
          * Creates a new TripDescriptor instance using the specified properties.
