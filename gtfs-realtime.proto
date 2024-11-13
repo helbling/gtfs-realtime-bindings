@@ -857,6 +857,9 @@ message TripDescriptor {
   }
   optional ModifiedTripSelector modified_trip = 7;
 
+  // Matches the original_trip_id in GTFS static.
+  optional string original_trip_id = 8;
+
   // The extensions namespace allows 3rd-party developers to extend the
   // GTFS Realtime Specification in order to add and evaluate new features and
   // modifications to the spec.
